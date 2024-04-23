@@ -6,7 +6,7 @@ atlag = function(X) {
 	}
 	atlag = s / n
 };
-print(atlag(x));
+cat("Átlag: ", atlag(x), "\n")
 
 empSzoras = function(X, atl){
 	s = 0
@@ -15,5 +15,9 @@ empSzoras = function(X, atl){
 		s = s + (X[i] - atl)^2
 	}
 	emp = s / (n - 1)
+
+	# Gyök alatt:
+		# Számláló: sum(xi - atl(x))^2
+		# Nevező: n - 1
 };
-print(empSzoras(x, atlag(x)));
+cat("Empirikus szórásnégyzet:", empSzoras(x, atlag(x)), "\n")
