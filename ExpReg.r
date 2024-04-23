@@ -1,9 +1,9 @@
-u = log10(v)
-v = c(3, 5, 7, 9, 11)
+x <- c(1, 2, 3, 4)
+y <- c(1, log(2)* exp(20*3), 54, 78)
 
 ExpReg <- function(X, Y) {
+    Y <- log(Y)
     n <- length(X)	# X hossza
-    plot(X, Y)	
 
     # Összegzések
     osszY <- Ossz(Y)
@@ -12,13 +12,13 @@ ExpReg <- function(X, Y) {
     osszXNegyzet <- Ossz(X, X)
 
     # "a" kiszámolása
-    osszA1 <- (osszXY * n) - (osszY * osszX)
-    osszA2 <- (osszXNegyzet * n) - (osszX * osszX)
+    osszA1 <- (osszXY * n) - (osszY * (-osszX))
+    osszA2 <- (osszXNegyzet * n) - (osszX * (-osszX))
     a <- osszA1/osszA2
 
     # "b" kiszámolása
-    osszB1 <- (osszXNegyzet * osszY) - (osszX * osszXY)
-    osszB2 <- (osszXNegyzet * n) - (osszX * osszX)
+    osszB1 <- (osszX * osszY) - (osszX * osszXY)
+    osszB2 <- (osszXNegyzet * n) - (osszX * (-osszX))
     b <- osszB1 / osszB2
 
     # Kiíratás
@@ -28,8 +28,8 @@ ExpReg <- function(X, Y) {
     e <- 2.71  
 
     # Kirajzolás
-    lines(X, a * e^(b * X), type = "l", lty = 1, col = "purple")
-    # f(x) = a * e^(b * X)
+    plot(X, Y)	
+    curve(exp(a* x) * exp(b), col = "purple")
 }
 
 Ossz <- function(X, Y = NULL) {
@@ -50,7 +50,7 @@ Ossz <- function(X, Y = NULL) {
   return(sum)
 }
 
-ExpReg(u, v)
+ExpReg(x, y)
 
 
 # Mátrix:
@@ -68,5 +68,5 @@ ExpReg(u, v)
 # sum(x)	n
 
 # B2 - Bal lent:
-# sum(x^2)	sum(x)
+# sum(x^2)	-sum(x)
 # sum(x)	n
