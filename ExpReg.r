@@ -8,8 +8,8 @@ ExpReg <- function(X, Y) {
     # Összegzések
     osszY <- Ossz(Y)
     osszX <- Ossz(X)
-    osszXY <- Ossz(X * Y)
-    osszXNegyzet <- Ossz(X^2)
+    osszXY <- Ossz(X, Y)
+    osszXNegyzet <- Ossz(X, X)
 
     # "a" kiszámolása
     osszA1 <- (osszXY * n) - (osszY * osszX)
